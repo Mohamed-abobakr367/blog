@@ -92,24 +92,24 @@ class PostController extends Controller
     }
 
     
-// public function storeOrUpdate(Request $request)
-// {
-//     $validated = $request->validate([
-//         'title' => 'required|string|max:255',
-//         'description' => 'required|string',
-//         'postcreator' => 'required|exists:users,id'
-//     ]);
+public function storeOrUpdate(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'postcreator' => 'required|exists:users,id'
+    ]);
     
-//     $post = Post::updateOrCreate(
-//         ['title' => $validated['title']], // Match by title
-//         [
-//             'description' => $validated['description'],
-//             'postcreator' => $validated['postcreator']
-//         ]
-//     );
+    $post = Post::updateOrCreate(
+        ['title' => $validated['title']], // Match by title
+        [
+            'description' => $validated['description'],
+            'postcreator' => $validated['postcreator']
+        ]
+    );
     
-//     return redirect()->route('posts.show', $post->id)
-//         ->with('success', 'Post saved successfully');
-// }
+    return redirect()->route('posts.show', $post->id)
+        ->with('success', 'Post saved successfully');
+}
     
 }
